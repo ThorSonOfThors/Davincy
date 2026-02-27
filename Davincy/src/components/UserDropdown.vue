@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useAuthStore } from '../stores/auth'
-import { useRouter } from 'vue-router'
+//import { useRouter } from 'vue-router'
 
 const auth = useAuthStore()
-const router = useRouter()
+//const router = useRouter()
 
 const open = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
+
+const emit = defineEmits(['navigate'])
 
 function toggle() {
   open.value = !open.value
@@ -15,17 +17,18 @@ function toggle() {
 
 async function logout() {
   await auth.logout()
-  router.push('/')
+  open.value = false
+  emit('navigate', '/')
 }
 
 function goToProfile() {
-  router.push('/edit-profile')
   open.value = false
+  emit('navigate', '/edit-profile')
 }
 
 function goToAccountSettings() {
-  router.push('/account-settings')
   open.value = false
+  emit('navigate', '/account-settings')
 }
 
 function handleClickOutside(e: MouseEvent) {

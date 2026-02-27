@@ -2,7 +2,7 @@
   <div class="register-page">
     <!-- Hero Section -->
     <div class="hero-section">
-      <h1 class="page-title">MILITARY FORUM</h1>
+      <h1 class="page-title">Register</h1>
       <p class="page-subtitle">Create Your Account</p>
     </div>
 
@@ -30,11 +30,11 @@
             <div class="admin-contact">
               <div class="contact-item">
                 <span class="contact-label">📧</span>
-                <a href="mailto:admin@militaryforum.com" class="contact-value">admin@militaryforum.com</a>
+                <a href="mailto:filintros@gmail.com" class="contact-value">admin@militaryforum.com</a>
               </div>
               <div class="contact-item">
                 <span class="contact-label">📞</span>
-                <span class="contact-value">+1 (555) 123-4567</span>
+                <span class="contact-value">+62-813-1851-582</span>
               </div>
             </div>
             
@@ -298,6 +298,7 @@ const register = async () => {
   letter-spacing: 4px;
   font-weight: 700;
   color: var(--gold);
+  font-family: "Cinzel", serif;
   text-shadow: 0 0 12px rgba(245, 210, 122, 0.4),
                0 4px 18px rgba(0, 0, 0, 0.7);
   margin: 0 0 10px;

@@ -141,7 +141,7 @@ onMounted(fetchCommunity)
   <div class="community-page">
     <div class="hero-section">
       <h1 class="page-title">Community</h1>
-      <p class="page-subtitle">Honoring Those Who Serve</p>
+      <p class="page-subtitle">Members of our comunity:</p>
     </div>
 
     <div v-if="loading" class="loading-state">
@@ -194,7 +194,7 @@ onMounted(fetchCommunity)
             </div>
 
             <div class="detail-item country-badge">
-              <span class="detail-label">Origin</span>
+              <span class="detail-label">Country</span>
               <span class="detail-value country-value">
                 <img
                   v-if="getFlagUrl(profile.country_of_origin)"
@@ -252,6 +252,7 @@ onMounted(fetchCommunity)
 .page-title {
   font-size: 3.5rem;
   letter-spacing: 6px;
+  font-family: "Cinzel", serif;
   font-weight: 700;
   color: var(--gold);
   text-shadow: 0 0 12px rgba(245, 210, 122, 0.4),
@@ -375,6 +376,7 @@ onMounted(fetchCommunity)
 .user-name {
   font-size: 1.5rem;
   font-weight: 600;
+  font-family: "Cinzel", serif;
   margin: 0 0 20px;
   color: inherit;
   letter-spacing: 1px;

@@ -231,6 +231,7 @@ export default {
 
 .page-title {
   font-size: 3.5rem;
+  font-family: "Cinzel", serif;
   letter-spacing: 6px;
   font-weight: 700;
   color: var(--gold);
@@ -342,6 +343,7 @@ export default {
   font-size: 2rem;
   font-weight: 600;
   margin: 0 0 25px;
+  font-family: "Cinzel", serif;
   color: var(--gold);
   letter-spacing: 1px;
   border-bottom: 2px solid rgba(245, 210, 122, 0.3);

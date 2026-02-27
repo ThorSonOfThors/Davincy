@@ -76,11 +76,11 @@ function handleForgotPassword() {
             <div class="admin-contact">
               <div class="contact-item">
                 <span class="contact-label">Email:</span>
-                <a href="mailto:admin@example.com" class="contact-value">admin@example.com</a>
+                <a href="filintros@gmail.com" class="contact-value">filintros@gmail.com</a>
               </div>
               <div class="contact-item">
                 <span class="contact-label">Phone:</span>
-                <span class="contact-value">+1 (555) 123-4567</span>
+                <span class="contact-value">+62-813-1851-582</span>
               </div>
             </div>
             
@@ -90,7 +90,7 @@ function handleForgotPassword() {
           </div>
           
           <button class="btn btn-primary modal-btn" @click="showForgotModal = false">
-            Understood
+            Understood!
           </button>
         </div>
       </div>
@@ -244,6 +244,7 @@ function handleForgotPassword() {
   font-size: 3rem;
   letter-spacing: 4px;
   font-weight: 700;
+  font-family: "Cinzel", serif;
   color: var(--gold);
   text-shadow: 0 0 12px rgba(245, 210, 122, 0.4),
                0 4px 18px rgba(0, 0, 0, 0.7);

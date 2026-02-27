@@ -112,6 +112,7 @@
   font-size: 3.5rem;
   letter-spacing: 6px;
   font-weight: 700;
+  font-family: "Cinzel", serif;
 
   color: #f5d27a; /* ceremonial gold */
 

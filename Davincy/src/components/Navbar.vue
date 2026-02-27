@@ -2,6 +2,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { useAuthStore } from '../stores/auth'
 import UserDropdown from '../components/UserDropdown.vue'
+import router from '../router'
 
 const auth = useAuthStore()
 
@@ -22,6 +23,13 @@ function toggleMobile() {
 function closeMobile() {
   mobileOpen.value = false
 }
+
+async function handleDropdownNavigation(path: string) {
+  mobileOpen.value = false  
+  await router.push(path)
+}
+
+
 </script>
 
 <template>
@@ -109,7 +117,7 @@ function closeMobile() {
           class="dropdown-container"
           v-if="isLoggedIn"
         >
-          <UserDropdown />
+          <UserDropdown @navigate="handleDropdownNavigation" />
         </div>
       </div>
     </nav>
@@ -202,12 +210,12 @@ function closeMobile() {
   bottom: -6px;
   width: 0%;
   height: 2px;
-  background: linear-gradient(90deg,#c6a65b,#f0d58a);
+  background: linear-gradient(90deg,#c6a65b,#FFD700);
   transition: width 0.25s ease;
 }
 
 .nav-links a:hover {
-  color: #f0d58a;
+  color: #FFD700;
 }
 
 .nav-links a:hover::after {
