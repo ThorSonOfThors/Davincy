@@ -16,12 +16,38 @@ const branchColor = computed(() => {
   const colors: Record<string, string> = {
     'Navy': 'var(--branch-navy)',
     'Airforce': 'var(--branch-airforce)',
-    'Marines': 'var(--branch-marines)',
-    'Field Force': 'var(--branch-field-force)'
+    'Field Force': 'var(--branch-field-force)',
+    'Non-Military': 'var(--branch-non-military)',
   }
   
   return colors[profile.value.branch] || 'var(--branch-default)'
 })
+
+
+
+/* ---------------- Countries ---------------- */
+const countries = [
+  'Albania','Andorra','Austria','Belarus','Belgium','Bosnia and Herzegovina',
+  'Bulgaria','Croatia','Cyprus','Czech Republic','Denmark','Estonia','Finland',
+  'France','Germany','Greece','Hungary','Iceland','Ireland','Italy','Kosovo',
+  'Latvia','Liechtenstein','Lithuania','Luxembourg','Malta','Moldova','Monaco',
+  'Montenegro','Netherlands','North Macedonia','Norway','Poland','Portugal','Romania',
+  'Russia','Serbia','Slovakia','Slovenia','Spain','Sweden','Switzerland','Ukraine',
+  'United Kingdom','Canada','USA','Mexico','Guatemala','Cuba','Jamaica','Panama',
+  'Argentina','Bolivia','Brazil','Chile','Colombia','Ecuador','Paraguay','Peru',
+  'Uruguay','Venezuela','Afghanistan','Armenia','Azerbaijan','Bahrain','Bangladesh',
+  'Bhutan','Brunei','Cambodia','China','Georgia','India','Indonesia','Iran','Iraq',
+  'Israel','Japan','Jordan','Kazakhstan','Kuwait','Kyrgyzstan','Laos','Lebanon',
+  'Malaysia','Maldives','Mongolia','Myanmar','Nepal','North Korea','Oman','Pakistan',
+  'Philippines','Qatar','Saudi Arabia','Singapore','South Korea','Sri Lanka','Syria',
+  'Taiwan','Tajikistan','Thailand','Turkey','Turkmenistan','United Arab Emirates',
+  'Uzbekistan','Vietnam','Yemen','Algeria','Angola','Benin','Botswana','Cameroon',
+  'Egypt','Ethiopia','Ghana','Kenya','Morocco','Mozambique','Namibia','Nigeria',
+  'Rwanda','Senegal','South Africa','Sudan','Tanzania','Tunisia','Uganda','Zambia',
+  'Zimbabwe','Australia','Fiji','New Zealand','Papua New Guinea','Samoa','Tonga'
+].sort()
+
+
 
 /* ---------------- FETCH PROFILE ---------------- */
 
@@ -268,13 +294,20 @@ onMounted(loadProfile)
 
             <div class="form-field">
               <label for="country_of_origin" class="field-label">Country of Origin</label>
-              <input
+              <select
                 id="country_of_origin"
                 v-model="profile.country_of_origin"
-                type="text"
                 class="form-input"
-                placeholder="e.g., Serbia, Indonesia, USA"
-              />
+              >
+                <option value="" disabled>Select country</option>
+                <option
+                  v-for="country in countries"
+                  :key="country"
+                  :value="country"
+                >
+                  {{ country }}
+                </option>
+              </select>
             </div>
           </div>
         </div>
@@ -308,8 +341,9 @@ onMounted(loadProfile)
                 <option value="" disabled selected>Select your branch</option>
                 <option value="Navy">Navy</option>
                 <option value="Airforce">Airforce</option>
-                <option value="Marines">Marines</option>
+                
                 <option value="Field Force">Field Force</option>
+                <option value="Non-Military">Non-Military</option>
               </select>
             </div>
 
@@ -402,7 +436,7 @@ onMounted(loadProfile)
 .edit-profile-page {
   --branch-navy: #0a2342; /* Dark blue */
   --branch-airforce: #87CEEB; /* Sky blue */
-  --branch-marines: #ffffff; /* White */
+  --branch-non-military: #800080; /* White */
   --branch-field-force: #4a5d23; /* Army green */
   --branch-default: #2c3e50; /* Default dark blue-gray */
   

@@ -30,7 +30,7 @@
             <div class="admin-contact">
               <div class="contact-item">
                 <span class="contact-label">📧</span>
-                <a href="mailto:filintros@gmail.com" class="contact-value">admin@militaryforum.com</a>
+                <a href="mailto:filintros@gmail.com" class="contact-value">filintros@gmail.com</a>
               </div>
               <div class="contact-item">
                 <span class="contact-label">📞</span>
@@ -244,6 +244,7 @@ const register = async () => {
     }
 
     //user already created using database policy
+    await supabase.auth.signOut()
 
     // Show success modal
     showModal.value = true
