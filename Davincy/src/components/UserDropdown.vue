@@ -31,6 +31,11 @@ function goToAccountSettings() {
   emit('navigate', '/account-settings')
 }
 
+function goToPublish() {
+  open.value = false
+  emit('navigate', '/publish')
+}
+
 function handleClickOutside(e: MouseEvent) {
   if (
     dropdownRef.value &&
@@ -76,6 +81,14 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="menu-items">
+          <button @click="goToPublish" class="menu-item">
+            <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+            </svg>
+            <span>Publish Announcement</span>
+          </button>
+
+
           <button @click="goToProfile" class="menu-item">
             <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
               <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />

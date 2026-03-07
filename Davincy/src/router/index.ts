@@ -10,6 +10,8 @@ import ProfileViewPage from '../pages/ProfileViewPage.vue'
 import AdminEvents from '../pages/AdminEvents.vue'
 import EventsPage from '../pages/EventsPage.vue'
 import RegisterPage from '../pages/RegisterPage.vue'
+import PublishPage from '../pages/PublishPage.vue'
+import AnnouncmentsPage from '../pages/AnnouncmentsPage.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,13 +19,18 @@ const router = createRouter({
     { path: '/', component: HomePage },
     { path: '/register', component: RegisterPage, meta: {reguiresAuth: false} },
     { path: '/login', component: LoginPage },
+
     {path: '/admin',component: AdminPage,meta: { requiresAdmin: true }},
     {path: '/admin-events',component: AdminEvents,meta: { requiresAdmin: true }},
+
     { path: '/edit-profile', component: EditProfilePage, meta: { requiresAuth: true }},
     { path: '/events', component: EventsPage, meta: { requiresAuth: true }},
     { path: '/account-settings', component: AccountSettingsPage, meta: { requiresAuth: true }},
     { path: '/community', component: ComunityPage, meta: { requiresAuth: true }},
     { path: '/profile/:id', component: ProfileViewPage, meta: { requiresAuth: true }},
+    { path: '/publish', component: PublishPage, meta: { requiresAuth: true }},
+    { path: '/announcments', component: AnnouncmentsPage, meta: { requiresAuth: true }}
+
   ]
 })
 

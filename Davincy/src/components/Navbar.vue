@@ -95,6 +95,14 @@ async function handleDropdownNavigation(path: string) {
           Events
         </router-link>
 
+        <router-link
+          v-if="isLoggedIn"
+          to="/announcments"
+          @click="closeMobile"
+        >
+          Announcements
+        </router-link>
+
 
         <router-link
           v-if="isAdmin"
