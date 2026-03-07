@@ -46,9 +46,6 @@ const rotateSpeed = 20 // <-- ADJUST: Logo ring rotation speed in seconds
 // ============================================
 const rotationAngle = ref(0)
 const currentSpeed = ref(30) // Current speed in seconds per rotation
-const targetSpeed = ref(30) // Target speed when clicking
-const velocity = ref(0) // Current angular velocity
-const isSpinning = ref(true)
 let animationFrame: number | null = null
 let lastTimestamp: number | null = null
 
