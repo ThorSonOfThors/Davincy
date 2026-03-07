@@ -4,6 +4,21 @@ import { useAuthStore } from '../stores/auth'
 import UserDropdown from '../components/UserDropdown.vue'
 import router from '../router'
 
+import { watch } from 'vue'
+
+const mobileOpen = ref(false)
+
+watch(mobileOpen, (open) => {
+  const html = document.documentElement
+
+  if (open) {
+    document.body.style.overflow = 'hidden'
+    html.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+    html.style.overflow = ''
+  }
+})
 const auth = useAuthStore()
 
 onMounted(async () => {
@@ -14,7 +29,7 @@ const isLoggedIn = computed(() => !!auth.user)
 const isAdmin = computed(() => auth.profile?.role === 'admin')
 
 /* ✅ Mobile menu state */
-const mobileOpen = ref(false)
+
 
 function toggleMobile() {
   mobileOpen.value = !mobileOpen.value
@@ -58,6 +73,7 @@ async function handleDropdownNavigation(path: string) {
     <!-- NAV LINKS -->
     <nav :class="['nav-links', { 'mobile-open': mobileOpen }]">
       <div class="nav-links-container">
+        <UserDropdown @navigate="handleDropdownNavigation" />
         <router-link to="/" @click="closeMobile">
           Home
         </router-link>
@@ -125,7 +141,7 @@ async function handleDropdownNavigation(path: string) {
           class="dropdown-container"
           v-if="isLoggedIn"
         >
-          <UserDropdown @navigate="handleDropdownNavigation" />
+          
         </div>
       </div>
     </nav>
@@ -158,6 +174,7 @@ async function handleDropdownNavigation(path: string) {
   position: sticky;
   top: 0;
   z-index: 1000;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* =========================
@@ -353,7 +370,6 @@ async function handleDropdownNavigation(path: string) {
 
   .dropdown-container {
     margin-left: 8px;
-    position: absolute;
     /** top: 90%;*/
     top: 15%;
 
@@ -375,6 +391,10 @@ async function handleDropdownNavigation(path: string) {
   
   .logo-img {
     height: 44px;
+  }
+
+  .dropdown-container{
+    margin-top: -40px;
   }
 }
 </style>

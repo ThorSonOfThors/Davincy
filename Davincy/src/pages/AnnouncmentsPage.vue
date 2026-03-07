@@ -220,6 +220,8 @@ function getInitials(firstName?: string, lastName?: string) {
   --shadow-color: rgba(0, 0, 0, 0.3);
   --card-bg: rgba(255, 255, 255, 0.08);
   --card-bg-dark: rgba(0, 0, 0, 0.2);
+
+  -webkit-tap-highlight-color: transparent;
   
   min-height: 100vh;
   background: radial-gradient(circle at top,

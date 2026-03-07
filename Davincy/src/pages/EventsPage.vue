@@ -211,6 +211,8 @@ export default {
   --text-light: #ffffff;
   --text-dark: #1a1a1a;
   --shadow-color: rgba(0, 0, 0, 0.3);
+
+  -webkit-tap-highlight-color: transparent;
   
   min-height: 100vh;
   background: radial-gradient(circle at top,

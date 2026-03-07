@@ -123,6 +123,7 @@ onBeforeUnmount(() => {
 ========================= */
 .dropdown {
   position: relative;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* =========================
@@ -230,8 +231,6 @@ onBeforeUnmount(() => {
   border: 1px solid rgba(245, 210, 122, 0.3);
   overflow: hidden;
   z-index: 100;
-
-  
 }
 
 /* Menu Header */
@@ -331,11 +330,4 @@ onBeforeUnmount(() => {
 ========================= */
 
 
-/* Small phones */
-@media (max-width: 360px) {
-  .dropdown-menu {
-    right: 12px;
-    left: 12px;
-  }
-}
 </style>

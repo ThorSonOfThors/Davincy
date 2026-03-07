@@ -434,6 +434,7 @@ function getPatternSize(index: number) {
 
   padding-top: 20px;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 
