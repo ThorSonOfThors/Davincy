@@ -700,9 +700,16 @@ function getPatternSize(index: number) {
 /* Optional: Add a breakpoint for very small phones */
 @media (max-width: 400px) {
   .ring-container {
+    margin: 10px auto;
+    transform: none;  
     width: 320px !important;
     height: 320px !important;
   }
+  
+  .logo-wrapper {
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+
 }
 
 </style>
