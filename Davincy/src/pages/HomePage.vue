@@ -14,7 +14,8 @@ const flags = [
   { country: "Australia", code: "au" },
   { country: "Brazil", code: "br" },
   { country: "Canada", code: "ca" },
-  { country: "South Africa", code: "za" }
+  { country: "South Africa", code: "za" },
+  { country: "Serbia", code: "rs" }
 ]
 
 // ============================================
@@ -39,16 +40,25 @@ const indonesiaScale = 1.4 // <-- ADJUST: Indonesia flag scale multiplier (was 1
 // Animation speeds
 const pulseSpeed = 4 // <-- ADJUST: Ring pulse animation speed in seconds
 const rotateSpeed = 20 // <-- ADJUST: Logo ring rotation speed in seconds
-const wheelRotationSpeed = 30 // <-- ADJUST: Wheel rotation speed in seconds (lower = faster)
 
 // ============================================
-// SPINNING WHEEL STATE
+// PHYSICS-BASED SPINNING STATE
 // ============================================
 const rotationAngle = ref(0)
+const currentSpeed = ref(30) // Current speed in seconds per rotation
+const targetSpeed = ref(30) // Target speed when clicking
+const velocity = ref(0) // Current angular velocity
+const isSpinning = ref(true)
 let animationFrame: number | null = null
 let lastTimestamp: number | null = null
 
-// Start the spinning animation
+// Physics constants - adjust these to change the feel
+const CLICK_BOOST = 50 // How much speed increases per click (lower = faster)
+const MAX_SPEED = 0.3 // Fastest possible rotation (seconds per rotation)
+const FRICTION = 0.99   // Friction coefficient (0.98 = slow decay)
+const MIN_SPEED = 30 // Default/minimum speed (seconds per rotation)
+
+// Start the spinning animation with physics
 const startSpinning = () => {
   const animate = (timestamp: number) => {
     if (lastTimestamp === null) {
@@ -58,8 +68,26 @@ const startSpinning = () => {
     // Calculate time difference in seconds
     const deltaTime = (timestamp - lastTimestamp) / 1000
     
-    // Update rotation angle (360 degrees per wheelRotationSpeed seconds)
-    rotationAngle.value += (360 / wheelRotationSpeed) * deltaTime
+    // Apply physics: gradually return to min speed using friction
+    if (currentSpeed.value < MIN_SPEED) {
+      // Speed up (lower number = faster rotation)
+      currentSpeed.value = Math.min(
+        MIN_SPEED,
+        currentSpeed.value + (MIN_SPEED - currentSpeed.value) * (1 - FRICTION) * deltaTime * 10
+      )
+    } else if (currentSpeed.value > MIN_SPEED) {
+      // Slow down (higher number = slower rotation)
+      currentSpeed.value = Math.max(
+        MIN_SPEED,
+        currentSpeed.value - (currentSpeed.value - MIN_SPEED) * (1 - FRICTION) * deltaTime * 10
+      )
+    }
+    
+    // Calculate velocity from current speed (convert seconds per rotation to degrees per second)
+    const angularVelocity = 360 / currentSpeed.value
+    
+    // Update rotation angle
+    rotationAngle.value += angularVelocity * deltaTime
     rotationAngle.value = rotationAngle.value % 360
     
     lastTimestamp = timestamp
@@ -76,6 +104,33 @@ const stopSpinning = () => {
     animationFrame = null
     lastTimestamp = null
   }
+}
+
+// Handle click on wheel to increase speed
+const handleWheelClick = (event: MouseEvent) => {
+  // Prevent click from propagating if clicking on logo or other elements
+  const target = event.target as HTMLElement
+  if (target.closest('.logo-wrapper')) {
+    return // Don't boost if clicking on center logo
+  }
+  
+  // Boost the speed (lower number = faster)
+  currentSpeed.value = Math.max(
+    MAX_SPEED,
+    currentSpeed.value - CLICK_BOOST
+  )
+  
+  // Optional: Add haptic feedback if on mobile
+  if (window.navigator && window.navigator.vibrate) {
+    window.navigator.vibrate(20) // Short vibration on click
+  }
+  
+  // Optional: Add visual feedback
+  const ring = document.querySelector('.flag-ring')
+  ring?.classList.add('ring-clicked')
+  setTimeout(() => {
+    ring?.classList.remove('ring-clicked')
+  }, 200)
 }
 
 // Lifecycle hooks
@@ -202,6 +257,7 @@ function getPatternSize(index: number) {
           :viewBox="`0 0 ${size} ${size}`"
           class="flag-ring"
           :style="{ animationDuration: pulseSpeed + 's' }"
+          @click="handleWheelClick"
         >
           <defs>
             <template v-for="(flag, index) in flags" :key="index">
@@ -416,6 +472,23 @@ function getPatternSize(index: number) {
 .flag-ring {
   filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
   animation: gentlePulse v-bind(pulseSpeed + 's') ease-in-out infinite;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.flag-ring.ring-clicked {
+  filter: drop-shadow(0 0 20px rgba(245,210,122,0.8));
+}
+
+/* Optional: Add a subtle pulse on click */
+@keyframes clickPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.ring-clicked {
+  animation: clickPulse 0.2s ease;
 }
 
 @keyframes gentlePulse {
@@ -450,6 +523,7 @@ function getPatternSize(index: number) {
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none; /* Prevents clicks from being blocked by logo */
 }
 
 .logo-background {
