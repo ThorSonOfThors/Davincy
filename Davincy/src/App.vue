@@ -21,13 +21,22 @@ body {
 /* GLOBAL DAGGER CURSOR */
 /* normal cursor */
 * {
-  cursor: url('/Gothic Engraved Swor..._imresizer.png') 8 8, auto !important;
+  cursor: url('/Gothic Engraved Swor..._imresizer.png') 8 8, auto;
 }
 
 /* pointer cursor */
 a,
 button,
-[role="button"] {
+[role="button"],
+[role="link"],
+[role="tab"],
+[role="menuitem"],
+[role="option"],
+[role="checkbox"],
+[role="radio"],
+[role="switch"],
+.flag-ring, 
+.flag-image {
   cursor: url('/Gothic Engraved Swor..._imresizer (1).png') 8 8, pointer !important;
 }
 
