@@ -73,7 +73,16 @@ async function handleDropdownNavigation(path: string) {
     <!-- NAV LINKS -->
     <nav :class="['nav-links', { 'mobile-open': mobileOpen }]">
       <div class="nav-links-container">
-        <UserDropdown @navigate="handleDropdownNavigation" />
+
+
+        <!-- USER DROPDOWN -->
+        <div
+          class="dropdown-container"
+          v-if="isLoggedIn"
+        >
+          <UserDropdown @navigate="handleDropdownNavigation" />
+        </div>
+        
         <router-link to="/" @click="closeMobile">
           Home
         </router-link>
@@ -136,13 +145,7 @@ async function handleDropdownNavigation(path: string) {
           Manage Events
         </router-link>
 
-        <!-- USER DROPDOWN -->
-        <div
-          class="dropdown-container"
-          v-if="isLoggedIn"
-        >
-          
-        </div>
+        
       </div>
     </nav>
   </header>
