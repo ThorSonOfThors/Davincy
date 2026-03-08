@@ -1,0 +1,10 @@
+/* Global cursor */
+html, body {
+  cursor: url('/dagger-knife.png') 16 16, auto;
+}
+
+/* clickable elements */
+a,
+button {
+  cursor: url('/dagger-knife.png') 16 16, pointer;
+}

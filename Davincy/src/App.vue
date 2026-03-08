@@ -18,7 +18,21 @@ body {
   font-family: system-ui, sans-serif;
 }
 
-.page {
-  padding-top: 0px; /* navbar height */
+/* GLOBAL DAGGER CURSOR */
+/* normal cursor */
+* {
+  cursor: url('/Gothic Engraved Swor..._imresizer.png') 8 8, auto !important;
 }
+
+/* pointer cursor */
+a,
+button,
+[role="button"] {
+  cursor: url('/Gothic Engraved Swor..._imresizer (1).png') 8 8, pointer !important;
+}
+
+
+
+
+
 </style>

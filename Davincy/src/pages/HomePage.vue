@@ -401,7 +401,7 @@ function getPatternSize(index: number) {
     <!-- BOTTOM CEREMONIAL IMAGE -->
     <section class="bottom-image-section">
       <img
-        src="../../public/military_cooperation.png"
+        src="/military_cooperation.png"
         alt="International Defence Cooperation"
         class="bottom-image"
       />
@@ -643,7 +643,7 @@ function getPatternSize(index: number) {
 }
 
 .description::after {
-  content: '🗺';
+  content: "🗺";
   position: absolute;
 
   bottom: 10px;
