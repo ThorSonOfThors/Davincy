@@ -347,7 +347,7 @@ async function handleDropdownNavigation(path: string) {
     font-size: 20px;
     width: 100%;
     text-align: center;
-    padding: 12px 0;
+    padding: 7px 0;
   }
 
   .dropdown-container {

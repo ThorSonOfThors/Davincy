@@ -593,22 +593,111 @@ function getPatternSize(index: number) {
   width: 91%;
   max-width: 720px;
 
+  line-height: 1.8;
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.3px;
 
-  line-height: 1.7;
-  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.9);
 
-  color: rgba(255,255,255,0.85);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.05) 0%, 
+    rgba(245, 210, 122, 0.03) 100%
+  );
+  backdrop-filter: blur(8px);
 
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(6px);
+  padding: 32px 40px;
+  padding-bottom: 100px;
+  border-radius: 24px;
 
+  border: 1px solid rgba(245, 210, 122, 0.2);
+  border-bottom: 2px solid rgba(245, 210, 122, 0.3);
+
+  box-shadow: 
+    0 20px 40px -10px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(245, 210, 122, 0.1) inset;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle decorative elements */
+.description::before {
+  content: '✯✯✯';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(245, 210, 122, 0.3), 
+    rgba(245, 210, 122, 0.5), 
+    rgba(245, 210, 122, 0.3), 
+    transparent
+  );
+}
+.description:hover::before {
+  color: rgba(245, 210, 122, 0.9); /* golden */
+  transform: scale(1.05);
+}
+
+.description::after {
+  content: '🗺';
+  position: absolute;
+
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 6rem;
+  font-family: Georgia, serif;
+
+  color: rgba(245, 210, 122, 0.12);
+  line-height: 1;
+
+  pointer-events: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect for the map */
+.description:hover::after {
+  color: rgba(245, 210, 122, 0.9); /* golden */
+  transform: translateX(-50%) scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .description {
+    font-size: 1rem;
+    padding: 24px 28px;
+    padding-bottom: 50px;
+    border-radius: 20px;
+  }
   
-  border-radius: 14px;
+  .description::after {
+    font-size: 4rem;
+    bottom: -9px;
+    
+  }
+}
 
-  border: 1px solid rgba(255,255,255,0.08);
+@media (max-width: 480px) {
+  .description {
+    padding: 20px 24px;
+    padding-bottom: 50px;
+    line-height: 1.7;
+  }
+}
 
-  box-shadow:
-    0 12px 30px rgba(0,0,0,0.35);
+/* Optional: Add a subtle hover effect */
+.description:hover {
+  border-color: rgba(245, 210, 122, 0.3);
+  box-shadow: 
+    0 25px 45px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(245, 210, 122, 0.15) inset;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
 }
 
 
@@ -674,17 +763,7 @@ function getPatternSize(index: number) {
     width: 500px !important; /* Increased from 400px */
     height: 500px !important; /* Increased from 400px */
     margin: 10px auto;
-  }
-
-  .description {
-    font-size: 0.95rem;
-    padding: 18px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  
+  }  
 
   .bottom-image {
     height: 260px; /* Better proportion for mobile */

@@ -79,11 +79,25 @@ function getBranchColor(branch?: string): string {
   const colors: Record<string, string> = {
     'Navy': 'var(--branch-navy)',
     'Airforce': 'var(--branch-airforce)',
-    'Marines': 'var(--branch-marines)',
+    'Non-Military': 'var(--branch-non-military)',
     'Field Force': 'var(--branch-field-force)'
   }
   
   return colors[branch || ''] || 'var(--branch-default)'
+}
+
+/* ---------------- BRANCH EMOJI HELPER ---------------- */
+function getBranchIcon(branch?: string) {
+  switch (branch) {
+    case 'Airforce':
+      return '🛦'
+    case 'Navy':
+      return '⚓︎'
+    case 'Field Force':
+      return '⚔'
+    case 'Non-Military':
+      return '⚜'
+  }
 }
 
 /* ---------------- COUNTRY FLAG HELPERS ---------------- */
@@ -273,6 +287,10 @@ onMounted(fetchCommunity)
         :style="{ backgroundColor: getBranchColor(profile.branch) }"
         @click="openProfile(profile.id)"
       >
+        
+        <div class="branch-icon">
+          {{ getBranchIcon(profile.branch) }}
+        </div>
         <!-- PHOTO - Square with rounded corners -->
         <div class="photo-wrapper">
           <img
@@ -340,7 +358,7 @@ onMounted(fetchCommunity)
 .community-page {
   --branch-navy: #0a2342; /* Dark blue */
   --branch-airforce: #87CEEB; /* Sky blue */
-  --branch-marines: #ffffff; /* White */
+  --branch-non-military: #800080; /* White */
   --branch-field-force: #4a5d23; /* Army green */
   --branch-default: #2c3e50; /* Default dark blue-gray */
   
@@ -436,6 +454,20 @@ onMounted(fetchCommunity)
   box-shadow: 0 10px 30px var(--shadow-color);
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
+  position: relative;
+}
+
+.branch-icon {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+
+  font-size: 26px;
+
+  opacity: 0.85;
+  pointer-events: none;
+
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
 
 .user-card:hover {
